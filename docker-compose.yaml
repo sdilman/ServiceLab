@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  web_service:
+    build: ./DockerWebService
+    restart: always
+
+  service_reader:
+    build: ./DockerServiceReader
+    restart: always
+    volumes:
+      - "./DockerServiceReader:/usr/src/app:rw"
+    depends_on:
+      - web_service
+    ports:
+      - "8090:8090"
+
+
